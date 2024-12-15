@@ -1,20 +1,22 @@
 const { Router } = require("express");
 const indexRouter = Router();
+const db = require("../db/queries");
 
-let messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
+// let messages = [
+//   {
+//     text: "Hi there!",
+//     user: "Amando",
+//     added: new Date(),
+//   },
+//   {
+//     text: "Hello World!",
+//     user: "Charles",
+//     added: new Date(),
+//   },
+// ];
 
-indexRouter.get("/", (req, res) => {
+indexRouter.get("/", async (req, res) => {
+  const messages = await db.selectMessageList();
   res.render("index", { title: "Mini Message Board", messages: messages });
 });
 
@@ -22,17 +24,17 @@ indexRouter.get("/new", (req, res) => {
   res.render("form");
 });
 
-indexRouter.post("/new", (req, res) => {
+indexRouter.post("/new", async (req, res) => {
   const messageText = req.body.messageText;
   const messageUser = req.body.messageUser;
-  messages.push({ text: messageText, user: messageUser, added: new Date() });
+  await db.insertMessages(messageUser, messageText);
   res.redirect("/");
 });
 
 indexRouter.get("/open", (req, res) => {
   res.render("open", {
     text: req.query.text,
-    user: req.query.user,
+    username: req.query.username,
     added: req.query.added,
   });
 });

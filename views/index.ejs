@@ -14,11 +14,11 @@
       <ul>
         <% messages.forEach((message) => { %>
         <li><%= message.text %></li>
-        <li><%= message.user %></li>
+        <li><%= message.username %></li>
         <li><%= message.added %></li>
         <br />
         <a
-          href="/open?text=<%= message.text%>&user=<%= message.user %>&added=<%= message.added %>"
+          href="/open?text=<%= message.text%>&username=<%= message.username %>&added=<%= message.added %>"
           ><button>Open Message</button></a
         >
         <% }) %>
