@@ -26,8 +26,6 @@ insert into messages (username, text, added) values
 
 async function main() {
   console.log("seeding...");
-  const blDate = new Date();
-  console.log(blDate);
   const client = new Client({
     connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DATABASE}`,
   });
