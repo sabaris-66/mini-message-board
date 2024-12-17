@@ -14,5 +14,18 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "pg": "^8.13.1"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "onFail": "error"
+    }
+  },
+  "engines": {
+    "node": "20.10.0"
   }
 }
